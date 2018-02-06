@@ -29,18 +29,19 @@ class ModelPaymentAlphabank extends Model {
 		return $method_data;
 	}
         
-        public function gateway($gateway, $method, $data){
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL=>$gateway.$method,
-                CURLOPT_RETURNTRANSFER=>true,
-                CURLOPT_POST=>true,
-                CURLOPT_POSTFIELDS=>http_build_query($data)
-            ));
-            
-            $responce = curl_exec($curl);
-            $responce = json_decode($responce, true);
-            curl_close($curl);
-            return $responce;
-        }
+	public function gateway($gateway, $method, $data){
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL=>$gateway.$method,
+			CURLOPT_RETURNTRANSFER=>true,
+			CURLOPT_POST=>true,
+			CURLOPT_POSTFIELDS=>http_build_query($data)
+		));
+		
+		$responce = curl_exec($curl);
+		$responce = json_decode($responce, true);
+		curl_close($curl);
+		return $responce;
+	}
 }
