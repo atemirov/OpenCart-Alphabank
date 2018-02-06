@@ -18,7 +18,7 @@ class ControllerPaymentAlphabank extends Controller{
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $this->model_setting_setting->editSetting('alphabank', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->response->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
+            $this->response->redirect($this->url->link('extensions/payment', 'token=' . $this->session->data['token'], 'SSL'));
 	}
         
         $data['heading_title'] = $this->language->get('heading_title');
@@ -80,7 +80,7 @@ class ControllerPaymentAlphabank extends Controller{
         
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_payment'),
-            'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
+            'href' => $this->url->link('extensions/payment', 'token=' . $this->session->data['token'], 'SSL')
 	);
         
         $data['breadcrumbs'][] = array(
@@ -89,7 +89,7 @@ class ControllerPaymentAlphabank extends Controller{
 	);
         
         $data['action'] = $this->url->link('payment/alphabank', 'token=' . $this->session->data['token'], 'SSL');
-        $data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
+        $data['cancel'] = $this->url->link('extensions/payment', 'token=' . $this->session->data['token'], 'SSL');
         
         if (isset($this->request->post['alphabank_slogin'])) {
             $data['alphabank_slogin'] = $this->request->post['alphabank_slogin'];
